@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --black: #080705;
+  --charcoal: #100e0b;
+  --ash: #1a1612;
+  --earth: #26190f;
+  --clay: #6b3f1e;
+  --amber: #c8860a;
+  --gold: #e8a020;
+  --flame: #d4541a;
+  --terracotta: #a84422;
+  --sand: #c4a06a;
+  --parchment: #e8d4b0;
+  --cream: #f5ede0;
+  --forest-deep: #0d1a0d;
+  --forest: #1a3020;
+  --sage: #3d6030;
+  --mint: #5a8c48;
+  --smoke: rgba(255, 255, 255, 0.03);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: clip;
+  background:
+    radial-gradient(circle at top, rgba(36, 23, 10, 0.25), transparent 45%),
+    var(--black);
+  color: var(--parchment);
+  font-feature-settings: "liga" 1, "kern" 1;
+}
+
+::selection {
+  background: rgba(200, 134, 10, 0.24);
+  color: var(--cream);
+}
+
+a,
+button,
+input,
+textarea {
+  cursor: none;
+}
+
+.grain-overlay {
+  opacity: 0.3;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+.thread-grid {
+  background-image:
+    linear-gradient(rgba(232, 160, 32, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 160, 32, 0.06) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.thread-grid-tight {
+  background-image:
+    linear-gradient(rgba(232, 160, 32, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 160, 32, 0.05) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+.section-shell {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+.chapter-tag {
+  display: inline-flex;
+  align-items: center;
+  border-left: 2px solid currentColor;
+  padding-left: 1rem;
+  font-family: var(--font-crimson);
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+}
+
+.ambient-image {
+  filter: sepia(0.4) brightness(0.4);
+  opacity: 0.14;
+  mix-blend-mode: screen;
+}
+
+.phone-gloss::before {
+  content: "";
+  position: absolute;
+  inset: 10px 12px auto;
+  height: 42px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent);
+  pointer-events: none;
+}
+
+.stat-number {
+  font-family: var(--font-cormorant);
+  font-weight: 300;
+  line-height: 0.88;
+}
+
+.headline-display {
+  font-family: var(--font-im-fell);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.body-copy {
+  font-family: var(--font-crimson);
+  font-weight: 300;
+  line-height: 1.9;
+}
+
+.soft-line {
+  position: relative;
+}
+
+.soft-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(232, 160, 32, 0), rgba(232, 160, 32, 0.3), rgba(232, 160, 32, 0));
+}
