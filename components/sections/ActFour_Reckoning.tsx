@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 
+import Reveal from "@/components/Reveal";
 import { registerGsap, gsap } from "@/lib/gsap-config";
 
 const ThreadAnimation = dynamic(
@@ -79,6 +80,27 @@ export function ActFourReckoning() {
       className="section-shell min-h-[100vh] bg-ash"
       data-cursor-theme="amber"
     >
+      <div style={{ position: "absolute", inset: 0, overflow: "hidden", zIndex: 0 }}>
+        <img
+          alt=""
+          src="/gilded-ceiling.jpg"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+            filter: "sepia(0.55) brightness(0.14) contrast(1.08)"
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to bottom, rgba(10,14,8,0.75) 0%, rgba(10,14,8,0.6) 50%, rgba(10,14,8,0.85) 100%)"
+          }}
+        />
+        <div className="woven-grid absolute inset-0" />
+      </div>
       <div
         ref={stageRef}
         className="relative flex min-h-screen items-center overflow-hidden px-6 py-24 lg:px-10"
@@ -88,32 +110,44 @@ export function ActFourReckoning() {
           className="absolute bottom-[-120px] right-[-120px] h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,_rgba(232,160,32,0.15),_transparent_65%)] blur-3xl"
         />
         <div className="relative mx-auto flex max-w-5xl flex-col items-center text-center">
-          <span className="chapter-tag self-start text-amber">ACT III — THE RECKONING</span>
+          <Reveal className="self-start" effect="wipe">
+            <span className="chapter-tag text-amber">ACT III — THE RECKONING</span>
+          </Reveal>
           <div className="mt-16 space-y-6">
-            <p className="reckoning-line-1 headline-display text-[clamp(3rem,6vw,4.2rem)] text-parchment">
-              The same technology...
-            </p>
-            <p className="reckoning-line-2 headline-display text-[clamp(3rem,6vw,4.2rem)] italic text-parchment">
-              ...that broke the chain...
-            </p>
-            <p
-              className="reckoning-line-3 headline-display text-[clamp(4rem,9vw,7rem)] italic text-gold"
-              style={{ textShadow: "0 0 80px rgba(232,160,32,0.3)" }}
-            >
-              chose to mend it.
-            </p>
+            <Reveal delay={0.15} effect="curtain">
+              <p className="reckoning-line-1 headline-display text-[clamp(3rem,6vw,4.2rem)] text-parchment">
+                The same technology...
+              </p>
+            </Reveal>
+            <Reveal delay={0.25} effect="curtain">
+              <p className="reckoning-line-2 headline-display text-[clamp(3rem,6vw,4.2rem)] italic text-parchment">
+                ...that broke the chain...
+              </p>
+            </Reveal>
+            <Reveal delay={0.3} effect="curtain">
+              <p
+                className="reckoning-line-3 headline-display text-[clamp(4rem,9vw,7rem)] italic text-gold"
+                style={{ textShadow: "0 0 80px rgba(232,160,32,0.3)" }}
+              >
+                chose to mend it.
+              </p>
+            </Reveal>
           </div>
           <div className="mt-14 space-y-4">
-            <p className="body-copy text-xl text-sand">
-              This is not a story about technology saving culture.
-            </p>
-            <p className="headline-display text-[clamp(1.5rem,2.8vw,2rem)] italic text-parchment">
-              This is a story about technology earning that right.
-            </p>
+            <Reveal delay={0.3} effect="rise">
+              <p className="body-copy text-xl text-sand">
+                This is not a story about technology saving culture.
+              </p>
+            </Reveal>
+            <Reveal delay={0.4} effect="rise">
+              <p className="headline-display text-[clamp(1.5rem,2.8vw,2rem)] italic text-parchment">
+                This is a story about technology earning that right.
+              </p>
+            </Reveal>
           </div>
-          <div className="mt-14 w-full">
+          <Reveal className="mt-14 w-full" delay={0.5} effect="emerge">
             <ThreadAnimation />
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>
