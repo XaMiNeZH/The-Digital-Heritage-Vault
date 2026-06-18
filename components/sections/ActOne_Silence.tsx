@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+import Reveal from "@/components/Reveal";
 import { useTypewriter } from "@/hooks/useTypewriter";
 
 const ParticleSystem = dynamic(
@@ -47,6 +48,27 @@ export function ActOneSilence() {
       className="section-shell relative min-h-[160vh] bg-black"
       data-cursor-theme="amber"
     >
+      <div style={{ position: "absolute", inset: 0, overflow: "hidden", zIndex: 0 }}>
+        <img
+          alt=""
+          src="/school-of-athens.jpg"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center 38%",
+            filter: "sepia(0.55) brightness(0.24) contrast(1.05)"
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "radial-gradient(ellipse at 50% 50%, rgba(8,6,4,0.35) 0%, rgba(8,6,4,0.82) 100%)"
+          }}
+        />
+        <div className="woven-grid absolute inset-0" />
+      </div>
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <ParticleSystem />
@@ -56,33 +78,43 @@ export function ActOneSilence() {
             {displayText}
             <span className="ml-1 inline-block h-[0.95em] w-px animate-blink bg-amber align-middle" />
           </p>
-          <motion.div
-            animate={{ opacity: isComplete ? 1 : 0, y: isComplete ? 0 : 24 }}
-            className="mt-12"
-            transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            <p className="font-body text-[10px] uppercase tracking-[0.42em] text-clay">
-              seconds since you opened this page
-            </p>
-            <p
-              className="stat-number mt-4 text-[clamp(5rem,12vw,9rem)] text-amber"
-              style={{ textShadow: "0 0 60px rgba(200,134,10,0.3)" }}
-            >
-              {seconds.toFixed(1)}
-            </p>
-            <p className="mt-4 font-body text-sm italic text-sand/55">
-              Every 40 of these seconds, humanity loses a word it will never recover.
-            </p>
-          </motion.div>
+          {isComplete ? (
+            <div className="mt-12">
+              <Reveal delay={0.2} effect="rise">
+                <p className="font-body text-[10px] uppercase tracking-[0.42em] text-clay">
+                  seconds since you opened this page
+                </p>
+              </Reveal>
+              <Reveal delay={0} effect="emerge">
+                <p
+                  className="stat-number mt-4 text-[clamp(5rem,12vw,9rem)] text-amber"
+                  style={{ textShadow: "0 0 60px rgba(200,134,10,0.3)" }}
+                >
+                  {seconds.toFixed(1)}
+                </p>
+              </Reveal>
+              <Reveal delay={0.35} effect="rise">
+                <p className="mt-4 font-body text-sm italic text-sand/55">
+                  Every 40 of these seconds, humanity loses a word it will never recover.
+                </p>
+              </Reveal>
+            </div>
+          ) : null}
         </div>
-        <motion.div
-          animate={{ opacity: showScrollPrompt ? 1 : 0, y: showScrollPrompt ? 0 : 20 }}
-          className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center"
-          transition={{ duration: 0.4 }}
+        <Reveal
+          className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2"
+          delay={0.5}
+          effect="rise"
         >
-          <span className="font-body text-[9px] uppercase tracking-[0.5em] text-clay">scroll</span>
-          <span className="mt-3 h-12 w-px origin-top animate-scroll-line bg-clay/70" />
-        </motion.div>
+          <motion.div
+            animate={{ opacity: showScrollPrompt ? 1 : 0, y: showScrollPrompt ? 0 : 20 }}
+            className="flex flex-col items-center"
+            transition={{ duration: 0.4 }}
+          >
+            <span className="font-body text-[9px] uppercase tracking-[0.5em] text-clay">scroll</span>
+            <span className="mt-3 h-12 w-px origin-top animate-scroll-line bg-clay/70" />
+          </motion.div>
+        </Reveal>
       </div>
     </section>
   );
