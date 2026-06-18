@@ -1,3 +1,4 @@
+import { ActDivider } from "@/components/ui/ActDivider";
 import { ActEightPromise } from "@/components/sections/ActEight_Promise";
 import { ActFiveSolution } from "@/components/sections/ActFive_Solution";
 import { ActFourReckoning } from "@/components/sections/ActFour_Reckoning";
@@ -11,12 +12,19 @@ export default function Page() {
   return (
     <main>
       <ActOneSilence />
+      <ActDivider />
       <ActTwoEvidence />
+      <ActDivider />
       <ActThreeCrime />
+      <ActDivider />
       <ActFourReckoning />
+      <ActDivider />
       <ActFiveSolution />
+      <ActDivider />
       <ActSixApp />
+      <ActDivider />
       <ActSevenXFactor />
+      <ActDivider />
       <ActEightPromise />
     </main>
   );
