@@ -1,0 +1,22 @@
+{
+  "directives": [
+    {
+      "directive": "Treat commit f813472 as the canonical restore point. Prefer the original first-deployed visual direction; do not reapply the Gemini redesign unless the user explicitly asks for it again.",
+      "priority": "high",
+      "context": "Custodix presentation baseline",
+      "timestamp": "2026-04-04T21:46:21.877Z"
+    }
+  ],
+  "notes": [
+    {
+      "category": "architecture",
+      "content": "Canonical build prompt is stored in build_prompt.md. Current approved baseline is the cinematic Next.js one-page presentation using App Router, Tailwind, Framer Motion, GSAP, and React Three Fiber.",
+      "timestamp": "2026-04-04T21:46:21.886Z"
+    },
+    {
+      "category": "deploy",
+      "content": "GitHub remote is git@github.com:XaMiNeZH/The-Digital-Heritage-Vault.git on main. Approved v1 baseline commit is f813472. Vercel production URL used during setup: https://custodix-digital-heritage-vault.vercel.app.",
+      "timestamp": "2026-04-04T21:46:21.893Z"
+    }
+  ]
+}

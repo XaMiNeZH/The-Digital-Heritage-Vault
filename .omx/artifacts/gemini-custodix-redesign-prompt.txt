@@ -1,0 +1,138 @@
+You are redesigning the visual layer of a Next.js website called Custodix. 
+The content and component structure already exists. You are ONLY touching 
+CSS, Tailwind classes, background treatments, image usage, and visual effects. 
+Do not change any text content or component structure.
+
+THE CORE PROBLEM: The site looks like a generic dark-mode React website. 
+It needs to look like a senior creative studio built it — something between 
+an editorial magazine and a museum installation.
+
+MANDATORY FIXES — implement all of these:
+
+1. GRAIN TEXTURE — GLOBAL, FIXED
+Add this as a fixed layer in layout.tsx, z-index 9999, pointer-events none:
+<div style={{
+  position: 'fixed', inset: 0, zIndex: 9999, pointerEvents: 'none',
+  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+  opacity: 0.035, mixBlendMode: 'overlay'
+}} />
+Also add a vignette layer below it:
+<div style={{
+  position: 'fixed', inset: 0, zIndex: 9998, pointerEvents: 'none',
+  background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.75) 100%)'
+}} />
+
+2. CULTURAL BACKGROUND IMAGES — every section must have one
+Each section needs a full-bleed background image from Unsplash that bleeds 
+through at low opacity behind the text. Use next/image with fill layout, 
+object-fit cover, and these CSS filters:
+  filter: sepia(0.5) brightness(0.25) saturate(0.8)
+  mix-blend-mode: luminosity
+
+Use these specific images per section:
+- Act I (Silence):     photo-1557180295-76eee20ae8aa (aged paper)
+- Act II (Evidence):   photo-1506905925346-21bda4d32df4 (cracked earth)  
+- Act III (Crime):     photo-1518998053901-5348d3961a04 (ancient stone)
+- Act IV (Reckoning):  photo-1558618666-fcd25c85cd64 (hands on loom)
+- Act V (Solution):    photo-1539650116574-75c0c6d73f6e (Morocco landscape)
+- Act VI (App):        photo-1590736969955-71cc94901144 (weaving detail)
+- Act VII (X-Factor):  photo-1560707303-4e980ce876ad (elder hands)
+- Act VIII (Promise):  photo-1564419320461-6870880221ad (pottery hands)
+
+Always wrap the image in a div with position:absolute, inset:0, overflow:hidden, 
+z-index:0. All section content must be z-index:1 or higher.
+
+3. SECTION BACKGROUNDS — not flat colors, layered gradients
+Each section background should be a combination of:
+  a) The Unsplash image (at 15-25% opacity via filter brightness)
+  b) A radial gradient glow from one corner (amber or terracotta at 8-15% opacity)
+  c) The woven SVG grid pattern at 4-6% opacity
+
+The woven grid SVG (use as CSS background-image on a pseudo-element or div):
+url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Cpath d='M0 10h20M10 0v20' stroke='%23c8860a' stroke-width='0.5' fill='none'/%3E%3C/svg%3E")
+background-size: 20px 20px
+opacity: 0.05
+
+4. TYPOGRAPHY SCALE — make it MUCH larger and more dramatic
+Stats/numbers: font-size must be clamp(5rem, 12vw, 10rem) — they should be 
+ENORMOUS, nearly full-screen-width at large sizes. Cormorant Garamond, 
+font-weight 200. Color: #c8860a with text-shadow: 0 0 80px rgba(200,134,10,0.3)
+
+Section headlines: clamp(4rem, 9vw, 8rem) minimum. IM Fell English or 
+Cormorant Garamond. Never smaller than 4rem for any headline.
+
+Body text: clamp(1.1rem, 2vw, 1.4rem). Crimson Pro. Line-height 1.9.
+
+5. STAT STRIPS — full width, not cards
+The evidence stats must be full-width horizontal strips separated by 
+a 1px amber line (not cards with borders). Each strip:
+  - The number on the LEFT (enormous, amber, Cormorant Garamond weight 200)
+  - A 1px vertical amber line as divider (height: 60%, centered vertically)  
+  - The explanation text on the RIGHT (Crimson Pro, sand color)
+  Padding: 3rem 0. No background. No border-radius. No box-shadow.
+
+6. PHONE MOCKUPS — museum display treatment
+The three phones need perspective 3D treatment:
+  transform-style: preserve-3d
+  perspective: 1000px
+Left phone:   transform: rotateY(15deg) translateX(-20px)
+Center phone: transform: rotateY(0deg) scale(1.08) — must be in FRONT
+Right phone:  transform: rotateY(-15deg) translateX(20px)
+
+Each phone frame:
+  background: #080503
+  border: 1px solid rgba(200,134,10,0.4)
+  border-radius: 36px
+  box-shadow: 0 60px 120px rgba(0,0,0,0.7), 
+              0 0 0 1px rgba(0,0,0,0.5),
+              0 0 40px rgba(200,134,10,0.06),
+              inset 0 0 40px rgba(0,0,0,0.5)
+
+7. THE ACKNOWLEDGMENT MODAL — make it feel sacred
+The modal box (Act VII) should feel like a handwritten letter, not a UI component:
+  background: linear-gradient(160deg, #0f0a06, #0a0805)
+  border: 1px solid rgba(200,134,10,0.2)
+  border-radius: 4px  ← almost no radius, like paper
+  padding: 4rem 3.5rem
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.6), 
+              0 80px 160px rgba(0,0,0,0.7),
+              0 0 120px rgba(200,134,10,0.03)
+  max-width: 520px, centered
+
+The text inside: Crimson Pro, italic for emotional lines, line-height 2.2, 
+font-size 1.1rem, color rgba(232,212,176,0.9). Give each paragraph 
+generous margin-bottom (1.5rem). The whole thing should feel like reading 
+a personal apology letter.
+
+8. THE CLOSING LINES (Act VIII) — largest text on the site
+"Will we choose to build technology that repairs what it broke?"
+This line must be: IM Fell English, italic, clamp(3rem, 7vw, 6rem)
+Color: #e8a020 (gold)
+Text-shadow: 0 0 120px rgba(232,160,32,0.25)
+Max-width: 900px, centered
+Generous margin above and below
+
+9. SECTION SEPARATORS — not just empty space
+Between each section, add a decorative separator:
+A centered 1px amber horizontal line, max-width 120px, 
+with a small diamond SVG (◆) centered on it.
+This replaces blank space between sections with intentional punctuation.
+
+10. CHAPTER TAGS — make them feel like film credits
+Every "ACT I — THE EVIDENCE" label:
+  font-family: Crimson Pro
+  font-size: 10px
+  letter-spacing: 0.45em
+  text-transform: uppercase
+  color: #7a4f2e (clay)
+  display: flex, align-items: center, gap: 1rem
+  &::before { content: ''; display: block; width: 32px; height: 1px; background: #7a4f2e; }
+
+THINGS TO NEVER DO:
+- No border-radius above 8px on any content block (not cards)
+- No box-shadow on text blocks
+- No gradient that goes toward purple or blue
+- No equal-width columns
+- No centered text for long paragraphs (headlines centered, body always left-aligned)
+- No icon library imports
+- The grain and vignette overlays must never be removed
