@@ -3,6 +3,7 @@
 import { animate, motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
+import Reveal from "@/components/Reveal";
 import { SectionDivider } from "@/components/ui/SectionDivider";
 
 type StatCounterProps = {
@@ -80,50 +81,76 @@ export function ActTwoEvidence() {
       className="section-shell overflow-hidden bg-[radial-gradient(ellipse_at_0%_100%,_rgba(107,63,30,0.25)_0%,_transparent_60%),_#100e0b]"
       data-cursor-theme="amber"
     >
-      <div className="thread-grid absolute inset-0 opacity-40" />
+      <div style={{ position: "absolute", inset: 0, overflow: "hidden", zIndex: 0 }}>
+        <img
+          alt=""
+          src="/school-of-athens.jpg"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center 48%",
+            filter: "sepia(0.8) brightness(0.13) contrast(1.18) saturate(0.55)"
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(160deg, rgba(10,7,4,0.76) 0%, rgba(10,7,4,0.92) 100%)"
+          }}
+        />
+        <div className="woven-grid absolute inset-0" />
+      </div>
       <div className="relative mx-auto max-w-7xl px-6 py-[15vh] lg:px-10">
-        <motion.span
-          className="chapter-tag text-terracotta"
-          initial={{ opacity: 0, x: -32 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.6 }}
-          whileInView={{ opacity: 1, x: 0 }}
-        >
-          ACT I — THE EVIDENCE
-        </motion.span>
-        <motion.h2
-          className="headline-display mt-10 max-w-4xl text-left text-[clamp(4rem,9vw,7.5rem)] text-parchment"
-          initial={{ opacity: 0, y: 30 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true, amount: 0.4 }}
-          whileInView={{ opacity: 1, y: 0 }}
-        >
-          The world is
-          <br />
-          forgetting <span className="italic text-amber">itself.</span>
-        </motion.h2>
+        <Reveal effect="wipe">
+          <span className="chapter-tag text-terracotta">ACT I — THE EVIDENCE</span>
+        </Reveal>
+        <div className="mt-10 max-w-4xl text-left text-[clamp(4rem,9vw,7.5rem)] text-parchment">
+          <Reveal delay={0.15} effect="curtain">
+            <h2 className="headline-display">The world is</h2>
+          </Reveal>
+          <Reveal delay={0.25} effect="curtain">
+            <h2 className="headline-display">
+              forgetting <span className="italic text-amber">itself.</span>
+            </h2>
+          </Reveal>
+        </div>
         <div className="mt-20 space-y-4">
           {strips.map((strip, index) => (
-            <motion.article
+            <div
               key={strip.text}
-              className="soft-line grid gap-8 py-10 lg:grid-cols-[minmax(260px,34%)_1px_minmax(0,1fr)] lg:items-center"
-              initial={{ opacity: 0, y: 40 }}
-              transition={{ duration: 0.8, delay: index * 0.12 }}
-              viewport={{ once: true, amount: 0.3 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className="grid gap-y-6 py-[2.8rem] lg:grid-cols-[260px_1px_1fr] lg:items-center lg:gap-x-12"
+              style={{ borderBottom: "1px solid rgba(200,134,10,0.1)" }}
             >
-              <div>{strip.number}</div>
-              <div className="hidden h-24 bg-amber/60 lg:block" />
+              <Reveal delay={index * 0.12} effect="curtain">
+                <div>{strip.number}</div>
+              </Reveal>
+              <div
+                className="hidden w-px self-center lg:block"
+                style={{
+                  height: "60%",
+                  background: "linear-gradient(to bottom, transparent, rgba(200,134,10,0.35), transparent)"
+                }}
+              />
               <div>
-                <p className="body-copy text-[clamp(1rem,2vw,1.4rem)] text-parchment">{strip.text}</p>
+                <Reveal delay={index * 0.12 + 0.1} effect="rise">
+                  <p className="body-copy text-[clamp(1.05rem,2vw,1.35rem)] text-sand/85">{strip.text}</p>
+                </Reveal>
                 {strip.source ? (
-                  <p className="mt-4 font-body text-sm italic text-clay">{strip.source}</p>
+                  <Reveal delay={index * 0.12 + 0.18} effect="rise">
+                    <p className="mt-4 font-body text-[0.8rem] italic tracking-[0.05em] text-sand/35">
+                      {strip.source}
+                    </p>
+                  </Reveal>
                 ) : null}
               </div>
-            </motion.article>
+            </div>
           ))}
         </div>
-        <SectionDivider className="mt-16" />
+        <Reveal className="mt-16" effect="wipe">
+          <SectionDivider />
+        </Reveal>
       </div>
     </section>
   );
