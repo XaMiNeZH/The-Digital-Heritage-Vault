@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
+import Reveal from "@/components/Reveal";
 
 const columns = [
   {
@@ -46,69 +45,77 @@ export function ActThreeCrime() {
       className="section-shell bg-[radial-gradient(circle_at_top_left,_rgba(107,63,30,0.16),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(168,68,34,0.16),_transparent_40%),#1a1612]"
       data-cursor-theme="amber"
     >
-      <div className="absolute inset-0">
+      <div style={{ position: "absolute", inset: 0, overflow: "hidden", zIndex: 0 }}>
+        <img
+          alt=""
+          src="/school-of-athens.jpg"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center 60%",
+            filter: "brightness(0.11) contrast(1.32) sepia(0.48)"
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "radial-gradient(ellipse at 30% 60%, rgba(12,8,5,0.5) 0%, rgba(12,8,5,0.93) 100%)"
+          }}
+        />
+        <div className="woven-grid absolute inset-0" />
         <div className="absolute inset-x-0 top-16 h-[2px] animate-flicker bg-terracotta/35" />
-        <div className="absolute right-0 top-0 h-full w-[42vw] opacity-10">
-          <Image
-            alt=""
-            className="ambient-image object-cover"
-            fill
-            sizes="42vw"
-            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=75&auto=format"
-          />
-        </div>
       </div>
       <div className="relative mx-auto max-w-6xl px-6 py-[16vh] text-center lg:px-10">
-        <span className="chapter-tag text-terracotta">ACT II — THE CRIME</span>
-        <motion.div
-          className="mx-auto mt-12 max-w-4xl space-y-8"
-          initial={{ opacity: 0, y: 24 }}
-          transition={{ duration: 0.9 }}
-          viewport={{ once: true, amount: 0.45 }}
-          whileInView={{ opacity: 1, y: 0 }}
-        >
-          <p className="headline-display text-[clamp(2.5rem,6vw,5rem)] italic text-parchment">
-            The villain didn&apos;t carry a weapon.
-          </p>
-          <p className="headline-display text-[clamp(2.5rem,6vw,5rem)] italic text-terracotta">
-            It carried an algorithm.
-          </p>
-        </motion.div>
-        <div className="mt-20 grid gap-12 text-left lg:grid-cols-3">
+        <Reveal effect="wipe">
+          <span className="chapter-tag text-terracotta">ACT II — THE CRIME</span>
+        </Reveal>
+        <div className="mx-auto mt-12 max-w-4xl space-y-8">
+          <Reveal delay={0.15} effect="curtain">
+            <p className="headline-display text-[clamp(2.5rem,6vw,5rem)] italic text-parchment">
+              The villain didn&apos;t carry a weapon.
+            </p>
+          </Reveal>
+          <Reveal delay={0.3} effect="curtain">
+            <p className="headline-display text-[clamp(2.5rem,6vw,5rem)] italic text-terracotta">
+              It carried an algorithm.
+            </p>
+          </Reveal>
+        </div>
+        <div className="mt-20 grid gap-12 text-left lg:grid-cols-[0.95fr_1.08fr_0.9fr]">
           {columns.map((column, index) => (
-            <motion.div
-              key={column.title}
-              initial={{ opacity: 0, y: 40 }}
-              transition={{ duration: 0.8, delay: index * 0.14 }}
-              viewport={{ once: true, amount: 0.3 }}
-              whileInView={{ opacity: 1, y: 0 }}
-            >
-              <div className="mb-5">{column.icon}</div>
-              <p className="font-body text-[10px] uppercase tracking-[0.42em] text-clay">{column.title}</p>
-              <h3 className="headline-display mt-4 text-[clamp(1.6rem,3vw,2.25rem)] text-parchment">
-                {column.stat}
-              </h3>
-              <p className="body-copy mt-5 text-lg text-sand">{column.text}</p>
-            </motion.div>
+            <div key={column.title}>
+              <Reveal delay={index * 0.15} effect="rise">
+                <div className="mb-5">{column.icon}</div>
+              </Reveal>
+              <Reveal delay={index * 0.15} effect="wipe">
+                <p className="font-body text-[10px] uppercase tracking-[0.42em] text-clay">{column.title}</p>
+              </Reveal>
+              <Reveal delay={index * 0.15 + 0.1} effect="curtain">
+                <h3 className="headline-display mt-4 text-[clamp(1.6rem,3vw,2.25rem)] text-parchment">
+                  {column.stat}
+                </h3>
+              </Reveal>
+              <Reveal delay={index * 0.15 + 0.18} effect="rise">
+                <p className="body-copy mt-5 text-lg text-sand">{column.text}</p>
+              </Reveal>
+            </div>
           ))}
         </div>
-        <motion.blockquote
-          className="mx-auto mt-24 max-w-3xl border-l-[3px] border-terracotta pl-10 text-left"
-          initial={{ opacity: 0, y: 30 }}
-          transition={{ duration: 0.9, delay: 0.15 }}
-          viewport={{ once: true, amount: 0.4 }}
-          whileInView={{ opacity: 1, y: 0 }}
-        >
-          <p className="headline-display text-[clamp(1.4rem,3vw,2.2rem)] italic leading-[1.5] text-parchment/75">
-            Technology didn&apos;t set out to erase culture.
-            <br />
-            But it built a system where speed, scale, and uniformity won —
-            <br />
-            and culture, which is slow, local, and deeply human,
-            <br />
-            could not compete.
-          </p>
-        </motion.blockquote>
+        <Reveal delay={0.25} effect="drift">
+          <blockquote className="mx-auto mt-24 max-w-3xl border-l-[3px] border-terracotta pl-10 text-left">
+            <p className="headline-display text-[clamp(1.4rem,3vw,2.2rem)] italic leading-[1.5] text-parchment/75">
+              Technology didn&apos;t set out to erase culture.
+              <br />
+              But it built a system where speed, scale, and uniformity won —
+              <br />
+              and culture, which is slow, local, and deeply human,
+              <br />
+              could not compete.
+            </p>
+          </blockquote>
+        </Reveal>
       </div>
     </section>
   );
