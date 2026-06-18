@@ -101,6 +101,67 @@ textarea {
   pointer-events: none;
 }
 
+.phones-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1.5rem;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+  padding: 3rem 2rem 4rem;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .phones-container {
+    flex-direction: row;
+  }
+}
+
+.phone-frame {
+  width: 205px;
+  height: 425px;
+  background: #060402;
+  border-radius: 32px;
+  border: 1.5px solid rgba(200, 134, 10, 0.35);
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.7),
+    0 50px 100px rgba(0, 0, 0, 0.85),
+    0 0 80px rgba(200, 134, 10, 0.04),
+    inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.phone-frame::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200, 134, 10, 0.5), transparent);
+  z-index: 10;
+}
+
+.phone-left .phone-frame {
+  transform: rotateY(20deg) translateX(-10px) translateY(24px);
+  opacity: 0.65;
+  filter: brightness(0.65);
+}
+
+.phone-center .phone-frame {
+  transform: rotateY(0deg) scale(1.1);
+  opacity: 1;
+  z-index: 3;
+}
+
+.phone-right .phone-frame {
+  transform: rotateY(-20deg) translateX(10px) translateY(24px);
+  opacity: 0.65;
+  filter: brightness(0.65);
+}
+
 .stat-number {
   font-family: var(--font-cormorant);
   font-weight: 300;
